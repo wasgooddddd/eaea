@@ -36,10 +36,6 @@ local assert = function(condition, errorMessage)
 	end
 end
 
--- Confirms the client thread can actually operate on the tree once it is parented.
--- A container may accept the assignment and still gate every method call on it, so
--- we probe with the operations the library really performs: a child add, and method
--- calls on both the root and the descendant.
 local function TreeUsable(Root: Instance)
 	if not Root.Parent then
 		return false
@@ -64,7 +60,7 @@ local function TreeUsable(Root: Instance)
 	return Ok and true or false
 end
 
--- CoreGui first, PlayerGui as the fallback. No hidden container, no protection call.
+
 local function ParentUI(UI: Instance, _SkipHiddenUI: boolean?)
 	pcall(function()
 		UI.Parent = CoreGui
